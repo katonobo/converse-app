@@ -59,6 +59,8 @@
             {{tapiokaData.tapioka}} <span style="font-size:1.2em; font-weight:bold;">{{answer1}}</span> {{tapiokaData.tapioka_unit}}、
             {{tapiokaData.tapiokamilk}} <span style="font-size:1.2em; font-weight:bold;">{{answer2}}</span> {{tapiokaData.tapiokamilk_unit}} 相当の{{targetData.category}}です </p>
         </div>
+        <p v-if="calAnswer" class="share_button"><b-button @click="share" type="is-info" icon-left="twitter" outlined>シェア</b-button></p>
+        <p v-if="calAnswer" class="title is-6">結果をシェアしよう！</p>
     </div>
 
     <div class="explain">
@@ -118,6 +120,13 @@ export default {
       }else{
         this.err = true
       }
+    },
+    share(){
+      var shareURL = 'https://twitter.com/intent/tweet?text='
+       +this.targetData.name + this.targetData.number + this.targetData.unit + "は、" +this.tapiokaData.tapioka + this.answer1 + this.tapiokaData.tapioka_unit +  "、" +this.tapiokaData.tapiokamilk + this.answer2 + this.tapiokaData.tapiokamilk_unit +  "相当の" + this.targetData.category + "です。"
+       + "%20%23おもしろ単位換算メーカー%20%23タピオカ"
+       + '&url=' + "https://conversion.ameneko.com/";
+      location.href = shareURL
     }
   }
 
